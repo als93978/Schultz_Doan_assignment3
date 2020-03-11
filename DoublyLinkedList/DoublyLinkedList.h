@@ -22,6 +22,8 @@ class DoublyLinkedList {
  private:
     NodeType* head;
     NodeType* tail;
+    int length;
 };
 
 #endif
+

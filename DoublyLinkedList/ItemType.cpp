@@ -34,7 +34,7 @@ void ItemType::initialize(int num) {
     this -> value = num;
 }
 
-void print() {
+void ItemType::print() {
     cout << value;
 }
 
