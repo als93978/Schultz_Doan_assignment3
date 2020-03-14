@@ -15,7 +15,10 @@ class DoublyLinkedList {
     ~DoublyLinkedList();
     int lengthIs() const;
     void insertItem(ItemType& item);
+    void insertItem(int itemValue);
     void deleteItem(ItemType& item);
+    void deleteItem(int itemIndex);
+    ItemType searchItem(int itemIndex);
     void print();
     void printReverse();
 
