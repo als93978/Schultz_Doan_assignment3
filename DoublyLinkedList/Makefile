@@ -6,7 +6,7 @@ main: ItemType.cpp DoublyLinkedList.cpp Main.cpp
 	g++ $(FLAGS) -o main ItemType.cpp DoublyLinkedList.cpp Main.cpp
 
 run:
-	./main
+	./main input1.txt
 
 clean:
 	rm main

@@ -30,6 +30,8 @@ int DoublyLinkedList::lengthIs() const {
 void DoublyLinkedList::insertItem(ItemType& item) {
     NodeType* newNode = new NodeType;
     newNode->data = item;
+    newNode->next = nullptr;
+    newNode->back = nullptr;
 
     NodeType* current = head;
     
@@ -48,9 +50,12 @@ void DoublyLinkedList::insertItem(ItemType& item) {
 	    current = current->next;
 
 	else if(item.compareTo(current->data) == EQUAL) { // duplicate item
+	    cout << endl;
 	    cout << "Item already exists" << endl;
 	    isDuplicate = true;
+
 	    delete newNode; // delete the unused new node to avoid a memory leak
+
 	    break;
 	}
 	
@@ -97,6 +102,7 @@ void DoublyLinkedList::deleteItem(ItemType& item) {
     NodeType* current = head;
 
     if(head == nullptr && tail == nullptr) { // trying to delete from empty list
+	cout << endl;
 	cout << "You cannot delete from an empty list." << endl;
 
 	return;
@@ -164,8 +170,10 @@ void DoublyLinkedList::deleteItem(ItemType& item) {
 	delete current;
     }
 
-    else
+    else {
+	cout << endl;
 	cout << "Item not in list!" << endl;
+    }
 }
 
 void DoublyLinkedList::deleteItem(int itemIndex) {
@@ -175,14 +183,11 @@ void DoublyLinkedList::deleteItem(int itemIndex) {
 }
 
 ItemType DoublyLinkedList::searchItem(int itemIndex) {
-    ItemType item;
+    ItemType item(-1);
     
     // index is out of bounds or list is empty 
-    if((itemIndex < 0) || (itemIndex > length-1) || (head == nullptr && tail == nullptr)) {
-	cout << "Item not found" << endl;
-
+    if((itemIndex < 0) || (itemIndex > length-1) || (head == nullptr && tail == nullptr))
 	return item;
-    }
 
     NodeType* current = head;
 
