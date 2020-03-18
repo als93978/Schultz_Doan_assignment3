@@ -6,7 +6,7 @@ main: Main.cpp
 	g++ $(FLAGS) -o main Main.cpp
 
 run:
-	./main input1.txt
+	./main string-input.txt
 
 clean:
 	rm main
