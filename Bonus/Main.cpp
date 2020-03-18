@@ -1,10 +1,17 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
 
 #include "DoublyLinkedList.h"
 
 using namespace std;
+
+template <typename T>
+void readInputFile(DoublyLinkedList<T>& list, char* filename);
+
+template <typename T>
+void runUserInterface(DoublyLinkedList<T>& list, string type);
 
 int main(int argc, char* argv[]) {
     // //TESTING CODE BELOW
@@ -61,21 +68,77 @@ int main(int argc, char* argv[]) {
     // list.printReverse();
 
     // cout << "Length: " << list.lengthIs() << endl;
+
+    bool incorrectInput = true;
+    char commandInput = '\0';
+    while(incorrectInput) {
+	cout << "Enter list type (i - int, f - float, s - std:string): ";
+	cin >> commandInput;
+
+	cout << endl;
+
+	switch(commandInput) {
+	case 'i': {
+	    DoublyLinkedList<int> list;
+
+	    readInputFile(list, argv[1]);
+
+	    runUserInterface(list, "Int");
+	    
+	    incorrectInput = false;
+
+	    break;
+	}
+
+	case 'f': {
+	    DoublyLinkedList<float> list;
+		    
+	    readInputFile(list, argv[1]);
+
+	    runUserInterface(list, "Float");
+
+	    incorrectInput = false;
+
+	    break;
+	}
+
+	case 's': {
+	    DoublyLinkedList<string> list;
+
+	    readInputFile(list, argv[1]);
+
+	    runUserInterface(list, "String");
+
+	    incorrectInput = false;
+
+	    break;
+	}
+
+	default: {
+	    cout << "Invalid command, try again!" << endl;
+	    
+	    cout << endl;
+
+	    break;
+	}
+	}
+    }
     
-    DoublyLinkedList list;
-    ItemType item;
-    int valueInput;
+    return 0;
+}
+
+template <typename T>
+void readInputFile(DoublyLinkedList<T>& list, char* filename) {
     fstream fs;
-
-    fs.open(argv[1], fstream::in);
-
-    string line;
+    
+    fs.open(filename, fstream::in);
+	
+    T valueInput;
     if(fs.is_open()) {
     	fs >> valueInput;
 	
     	while(!fs.eof()) {
-    	    item.initialize(valueInput);
-    	    list.insertItem(item);
+    	    list.insertItem(valueInput);
 
     	    fs >> valueInput;
     	}
@@ -86,9 +149,12 @@ int main(int argc, char* argv[]) {
     else {
     	cout << "Failed to open the input file" << endl;
 
-    	return 1;
+    	exit(1);
     }
+}
 
+template <typename T>
+void runUserInterface(DoublyLinkedList<T>& list, string type) {
     cout << "insert (i), delete (d), length (l), print (p)," 
     	 << " printReverse(r), quit (q)" << endl;
 
@@ -104,12 +170,11 @@ int main(int argc, char* argv[]) {
 	
     	switch(commandInput) {
     	case 'i': {
-    	    int num;
+    	    T item;
 
-    	    cout << "Number to insert: ";
-    	    cin >> num;
+    	    cout << type << " to insert: ";
+    	    cin >> item;
 
-    	    ItemType item(num);
     	    list.insertItem(item);
 
     	    cout << endl;
@@ -122,12 +187,11 @@ int main(int argc, char* argv[]) {
     	}
 	    
     	case 'd': {
-    	    int num;
+    	    T item;
 
-    	    cout << "Number to delete: ";
-    	    cin >> num;
+    	    cout << type << " to delete: ";
+    	    cin >> item;
 
-    	    ItemType item(num);
     	    list.deleteItem(item);
 
     	    cout << endl;
@@ -172,9 +236,15 @@ int main(int argc, char* argv[]) {
 	    
     	    break;
     	}
+
+	default:
+	    cout << "Invalid command, try again!" << endl;
+
+	    cout << endl;
+
+	    break;
     	}
     }
-    
-    return 0;
+
 }
 

@@ -20,7 +20,7 @@ class DoublyLinkedList {
     int lengthIs() const;
     void insertItem(T& item);
     void deleteItem(T& item);
-    void deleteItem(int itemIndex);
+    void deleteIndexItem(int itemIndex);
     T searchItem(int itemIndex);
     void print();
     void printReverse();
@@ -199,12 +199,11 @@ void DoublyLinkedList<T>::deleteItem(T& item) {
     else {
 	cout << endl;
 	cout << "Item not in list!" << endl;
-	cout << endl;
     }
 }
 
 template <typename T>
-void DoublyLinkedList<T>::deleteItem(int itemIndex) {
+void DoublyLinkedList<T>::deleteIndexItem(int itemIndex) {
     T item = searchItem(itemIndex);
     
     deleteItem(item);
