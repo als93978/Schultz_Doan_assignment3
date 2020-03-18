@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <istream>
 
 #include "DoublyLinkedList.h"
 
@@ -70,15 +71,15 @@ int main(int argc, char* argv[]) {
     // cout << "Length: " << list.lengthIs() << endl;
 
     bool incorrectInput = true;
-    char commandInput = '\0';
+    string commandInput = "";
     while(incorrectInput) {
 	cout << "Enter list type (i - int, f - float, s - std:string): ";
-	cin >> commandInput;
 
+	getline(cin, commandInput);
+	
 	cout << endl;
 
-	switch(commandInput) {
-	case 'i': {
+	if(commandInput.compare("i") == 0) {
 	    DoublyLinkedList<int> list;
 
 	    readInputFile(list, argv[1]);
@@ -86,11 +87,9 @@ int main(int argc, char* argv[]) {
 	    runUserInterface(list, "Int");
 	    
 	    incorrectInput = false;
-
-	    break;
 	}
 
-	case 'f': {
+	else if(commandInput.compare("f") == 0) {
 	    DoublyLinkedList<float> list;
 		    
 	    readInputFile(list, argv[1]);
@@ -98,11 +97,9 @@ int main(int argc, char* argv[]) {
 	    runUserInterface(list, "Float");
 
 	    incorrectInput = false;
-
-	    break;
 	}
 
-	case 's': {
+	else if(commandInput.compare("s") == 0) {
 	    DoublyLinkedList<string> list;
 
 	    readInputFile(list, argv[1]);
@@ -110,17 +107,12 @@ int main(int argc, char* argv[]) {
 	    runUserInterface(list, "String");
 
 	    incorrectInput = false;
-
-	    break;
 	}
 
-	default: {
+	else {
 	    cout << "Invalid command, try again!" << endl;
 	    
 	    cout << endl;
-
-	    break;
-	}
 	}
     }
     
