@@ -6,6 +6,11 @@
 
 using namespace std;
 
+/*
+  Author: Austin Schultz
+
+  Handles file reading and the command-line user interface.
+ */
 int main(int argc, char* argv[]) {
     // //TESTING CODE BELOW
     // DoublyLinkedList list;
@@ -50,8 +55,10 @@ int main(int argc, char* argv[]) {
     int valueInput;
     fstream fs;
 
+    // open the file with the given filename
     fs.open(argv[1], fstream::in);
 
+    // read the file, inserting each space seperated value into the list
     string line;
     if(fs.is_open()) {
     	fs >> valueInput;
@@ -72,11 +79,13 @@ int main(int argc, char* argv[]) {
     	return 1;
     }
 
+    // display the command options
     cout << "insert (i), delete (d), length (l), print (p)," 
     	 << " printReverse(r), quit (q)" << endl;
 
     cout << endl;
-    
+
+    // the main command input loop
     bool running = true;
     char commandInput = '\0';
     while(running) {
@@ -84,7 +93,8 @@ int main(int argc, char* argv[]) {
     	cin >> commandInput;
 
     	cout << endl;
-	
+
+	// process the input and call the appropriate DoublyLinkedList functions
     	switch(commandInput) {
     	case 'i': {
     	    int num;
@@ -154,6 +164,15 @@ int main(int argc, char* argv[]) {
 	    cout << endl;
 	    
     	    break;
+    	}
+
+	    // wrong command given
+	default:
+	    cout << "Invalid command, try again!" << endl;
+	    
+	    cout << endl;
+	    
+	    break;
     	}
     	}
     }

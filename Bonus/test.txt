@@ -1,0 +1,14 @@
+if(isFound) {
+    if(predLoc == current)
+        head = nullptr;
+
+    else {
+        predLoc->next = current->next;
+
+        if(current == head)
+	    head = predLoc;
+    }
+
+    delete current;
+    length--;
+}

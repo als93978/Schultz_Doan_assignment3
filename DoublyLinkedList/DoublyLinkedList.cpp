@@ -4,12 +4,27 @@
 
 using namespace std;
 
+/*
+  Author: Austin Schultz
+
+  Constructor
+
+  Gets the list ready by setting head and tail to nullptr
+  and length to 0.
+ */
 DoublyLinkedList::DoublyLinkedList() {
     head = nullptr;
     tail = nullptr;
     length = 0;
 }
 
+/*
+  Author: Austin Schultz
+
+  Destructor
+
+  Deletes all the nodes in the list to avoid memory leaks.
+ */
 DoublyLinkedList::~DoublyLinkedList() {
     NodeType* current = nullptr;
 
@@ -23,10 +38,24 @@ DoublyLinkedList::~DoublyLinkedList() {
     tail = nullptr;
 }
 
+/*
+  Author: Austin Schultz
+
+  Returns the length data member, giving the length of the list
+  (Number of nodes).
+ */
 int DoublyLinkedList::lengthIs() const {
     return length;
 }
 
+/*
+  Author: Austin Schultz
+
+  Given an ItemType reference, this function finds the appropriate
+  location (preserving the sorted order) in the list based on the
+  value of item and the values already in the list, and inserts
+  the item wrapped in a NodeType to that location.
+ */
 void DoublyLinkedList::insertItem(ItemType& item) {
     NodeType* newNode = new NodeType;
     newNode->data = item;
@@ -92,12 +121,29 @@ void DoublyLinkedList::insertItem(ItemType& item) {
     }
 }
 
+/*
+  Author: Austin Schultz
+
+  This convenience function allows you to put in an int value directly
+  into insertItem rather than having to make an ItemType object
+  yourself.
+  
+  The function simply creates an ItemType object with the given
+  itemValue int and then passes the ItemType object to the normal
+  insertItem function.
+ */
 void DoublyLinkedList::insertItem(int itemValue) {
     ItemType item(itemValue);
 
     insertItem(item);
 }
 
+/*
+  Author: Austin Schultz
+
+  Given an ItemType reference, this function finds the item in the list
+  whose value matches that of the given item's value, and deletes the item.
+ */
 void DoublyLinkedList::deleteItem(ItemType& item) {
     NodeType* current = head;
 
@@ -170,18 +216,36 @@ void DoublyLinkedList::deleteItem(ItemType& item) {
 	delete current;
     }
 
-    else {
+    else { // item was not found
 	cout << endl;
 	cout << "Item not in list!" << endl;
     }
 }
 
+/*
+  Author: Austin Schultz
+
+  A convenience function that allows you to specify the index of the item
+  you want to delete in the list, rather than having to make an ItemType
+  object.
+
+  The function uses the searchItem function (described below) to find the
+  item that corresponds to the given itemIndex, and then passes that resulting
+  ItemType object to the normal deleteItem function.
+ */
 void DoublyLinkedList::deleteItem(int itemIndex) {
     ItemType item = searchItem(itemIndex);
     
     deleteItem(item);
 }
 
+/*
+  Author: Austin Schultz
+
+  Given a given index that corresponds to an item in the list,
+  this function returns the ItemType object item that corresponds
+  to the index.
+ */
 ItemType DoublyLinkedList::searchItem(int itemIndex) {
     ItemType item(-1);
     
@@ -193,7 +257,7 @@ ItemType DoublyLinkedList::searchItem(int itemIndex) {
 
     int i = 0;
     while(current != nullptr) {	
-	if(i == itemIndex) // found item
+	if(i == itemIndex) // found item, internal index is same as given index
 	    return current->data;
 
 	current = current->next;
@@ -203,6 +267,11 @@ ItemType DoublyLinkedList::searchItem(int itemIndex) {
     return item;
 }
 
+/*
+  Author: Austin Schultz
+
+  Iterates through the list and sequentially prints out each item's value.
+ */
 void DoublyLinkedList::print() {
     NodeType* current = head;
 
@@ -215,6 +284,12 @@ void DoublyLinkedList::print() {
     cout << endl;
 }
 
+/*
+  Author: Austin Schultz
+
+  The same as the above print function except it prints the item values out backwards,
+  starting at the last item and going to the first item.
+ */
 void DoublyLinkedList::printReverse() {
     NodeType* current = tail;
 
