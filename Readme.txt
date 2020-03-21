@@ -16,6 +16,40 @@ David Doan - dd67391@uga.edu
        * Contributions: All of CircularLinkedList (ItemType.h, ItemType.cpp,
        CircularLinkedList.h, CircularLinkedList.cpp, input1.txt, Main.cpp, Makefile)
 
+For CircularLinkedList
+=======================
+
+Compiling
+---------
+Ensure you are in the correct assignment directory (Schultz-Doan-assignment3).
+
+Then simply run:
+make compile
+
+gcc version 6.2.0 was used to compile for testing.
+
+To compile manually, run the following:
+g++ -g -Wall -O0 -pedantic-errors -o main ItemType.cpp CircularLinkedList.cpp Main.cpp
+
+To run
+------
+Simply run:
+make run    **(note this only runs ./main input1.txt)
+
+To run manually, run the following:
+./main input1.txt
+or ./main input.txt (if using input.txt, but eLC download came with input1.txt)
+or ./main [other input file]
+
+After running
+-------------
+If you want, you can run the following:
+make clean
+
+Or, run: rm main.
+
+This deletes the 'main' executable file.
+
 For DoublyLinkedList (Not the Bonus)
 ====================================
 
