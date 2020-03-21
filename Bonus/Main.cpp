@@ -14,6 +14,12 @@ void readInputFile(DoublyLinkedList<T>& list, char* filename);
 template <typename T>
 void runUserInterface(DoublyLinkedList<T>& list, string type);
 
+/*
+  Author: Austin Schultz
+
+  Displays the command options and calls functions to read the given
+  file and display the user interface.
+*/
 int main(int argc, char* argv[]) {
     // //TESTING CODE BELOW
     // DoublyLinkedList<string> list;
@@ -70,6 +76,10 @@ int main(int argc, char* argv[]) {
 
     // cout << "Length: " << list.lengthIs() << endl;
 
+    /*
+      Displays the command options and calls functions to read the given
+      file and display the user interface.
+     */
     bool incorrectInput = true;
     string commandInput = "";
     while(incorrectInput) {
@@ -119,6 +129,12 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
+/*
+  Author: Austin Schultz
+
+  Open the file with the given filename and read the file,
+  inserting each space seperated value into the list.
+ */
 template <typename T>
 void readInputFile(DoublyLinkedList<T>& list, char* filename) {
     fstream fs;
@@ -145,6 +161,13 @@ void readInputFile(DoublyLinkedList<T>& list, char* filename) {
     }
 }
 
+/*
+  Author: Austin Schultz
+
+  Display the user interface: display the command options and
+  run the main command input loop, processing the input and calling
+  the appropriate DoublyLinkedList functions.
+ */
 template <typename T>
 void runUserInterface(DoublyLinkedList<T>& list, string type) {
     cout << "insert (i), delete (d), length (l), print (p)," 

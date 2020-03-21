@@ -31,6 +31,14 @@ class DoublyLinkedList {
     int length;
 };
 
+/*
+  Author: Austin Schultz
+
+  Constructor
+
+  Gets the list ready by setting head and tail to nullptr
+  and length to 0.
+ */
 template <typename T>
 DoublyLinkedList<T>::DoublyLinkedList() {
     head = nullptr;
@@ -38,6 +46,13 @@ DoublyLinkedList<T>::DoublyLinkedList() {
     length = 0;
 }
 
+/*
+  Author: Austin Schultz
+
+  Destructor
+
+  Deletes all the nodes in the list to avoid memory leaks.
+ */
 template <typename T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
     NodeType<T>* current = nullptr;
@@ -52,11 +67,25 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
     tail = nullptr;
 }
 
+/*
+  Author: Austin Schultz
+
+  Returns the length data member, giving the length of the list
+  (Number of nodes).
+ */
 template <typename T>
 int DoublyLinkedList<T>::lengthIs() const {
     return length;
 }
 
+/*
+  Author: Austin Schultz
+
+  Given a reference to an item, this function finds the appropriate
+  location (preserving the sorted order) in the list based on the
+  value of item and the values already in the list, and inserts
+  the item wrapped in a NodeType to that location.
+ */
 template <typename T>
 void DoublyLinkedList<T>::insertItem(T& item) {
     NodeType<T>* newNode = new NodeType<T>;
@@ -123,6 +152,12 @@ void DoublyLinkedList<T>::insertItem(T& item) {
     }
 }
 
+/*
+  Author: Austin Schultz
+
+  Given a referenceto the item, this function finds the item in the list
+  whose value matches that of the given item's value, and deletes the item.
+ */
 template <typename T>
 void DoublyLinkedList<T>::deleteItem(T& item) {
     NodeType<T>* current = head;
@@ -196,12 +231,23 @@ void DoublyLinkedList<T>::deleteItem(T& item) {
 	delete current;
     }
 
-    else {
+    else { // item was not found
 	cout << endl;
 	cout << "Item not in list!" << endl;
     }
 }
 
+/*
+  Author: Austin Schultz
+
+  A convenience function that allows you to specify the index of the item
+  you want to delete in the list, rather than having to pass in a reference
+  to the item.
+
+  The function uses the searchItem function (described below) to find the
+  item that corresponds to the given itemIndex, and then passes that resulting
+  item to the normal deleteItem function.
+ */
 template <typename T>
 void DoublyLinkedList<T>::deleteIndexItem(int itemIndex) {
     T item = searchItem(itemIndex);
@@ -209,6 +255,12 @@ void DoublyLinkedList<T>::deleteIndexItem(int itemIndex) {
     deleteItem(item);
 }
 
+/*
+  Author: Austin Schultz
+
+  Given a given index that corresponds to an item in the list,
+  this function returns the item that corresponds to the index.
+ */
 template <typename T>
 T DoublyLinkedList<T>::searchItem(int itemIndex) {
     T item;
@@ -231,6 +283,11 @@ T DoublyLinkedList<T>::searchItem(int itemIndex) {
     return item;
 }
 
+/*
+  Author: Austin Schultz
+
+  Iterates through the list and sequentially prints out each item's value.
+ */
 template <typename T>
 void DoublyLinkedList<T>::print() {
     NodeType<T>* current = head;
@@ -244,6 +301,12 @@ void DoublyLinkedList<T>::print() {
     cout << endl;
 }
 
+/*
+  Author: Austin Schultz
+
+  The same as the above print function except it prints the item values out backwards,
+  starting at the last item and going to the first item.
+ */
 template <typename T>
 void DoublyLinkedList<T>::printReverse() {
     NodeType<T>* current = tail;
