@@ -14,7 +14,7 @@ Austin Schultz - als93978@uga.edu
        
 David Doan - dd67391@uga.edu
        * Contributions: All of CircularLinkedList (ItemType.h, ItemType.cpp,
-       CircularLinkedList.h, CircularLinkedList.cpp, input1.txt, Main.cpp, Makefile)
+       CircularLinkedList.h, CircularLinkedList.cpp, input1.txt, Main.cpp, Makefile, and Readme.txt)
 
 For CircularLinkedList
 =======================
