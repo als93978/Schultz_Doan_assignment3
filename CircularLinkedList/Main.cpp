@@ -45,6 +45,7 @@ int main(int argc, char * argv[]) {
 	    cin >> number;
 	    ItemType item(number);
 	    list.insertItem(item);
+	    cout << endl;
 	    list.print();
 	    break;
 	}
@@ -55,6 +56,7 @@ int main(int argc, char * argv[]) {
 	    cin >> value;
 	    ItemType item(value);
 	    list.deleteItem(item);
+	    cout << endl;
 	    list.print();
 	    break;
 	}
@@ -70,9 +72,8 @@ int main(int argc, char * argv[]) {
 	}
 	    
 	case 'q': { // quit command that stops the hile loop and exits the program
-	    cout << "Quitting program..." << endl;
+	    cout << "Quitting program...\n" << endl;
 	    loop = false;
-	    return 0;
 	    break;
 	}
 	    

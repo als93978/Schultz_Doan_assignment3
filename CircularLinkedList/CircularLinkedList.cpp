@@ -32,110 +32,104 @@ void CircularLinkedList::insertItem(ItemType &item) {
     NodeType *newNode = new NodeType;
     newNode->data = item;
     newNode->next = nullptr;
-    NodeType *current = head;
+    NodeType *current;
     NodeType *predLoc = head;
     bool duplicateFound = false;
     bool moreToSearch = true;
     
-    if (head == nullptr) {
+    if (head == nullptr) { // inserts when circular linked list is empty
     	head = newNode;
     	newNode->next = newNode;
-    	current = head->next;
 	length++;
     	return;
     }
     
     else {
-	while (moreToSearch && !duplicateFound) {
+	current = head->next;
+	while (moreToSearch) { // finds the item in list and compares to current->data
 	    if (item.compareTo(current->data) == LESS) {
 		moreToSearch = false;
-		cout << "input" << endl;
 	    }
 
-	    else if (item.compareTo(current->data) == EQUAL) {
-		cout << "Item already exists" << endl;
+	    else if (item.compareTo(current->data) == EQUAL) { // finds and handles duplicates
+		cout << "\nItem already exists" << endl;
 		duplicateFound = true;
 		delete newNode;
 		break;
 	    }
 
-	    else {
-		cout << "output" << endl;
+	    else { // if greater, updates predLoc, current, and moreToSearch
 		predLoc = current;
 		current = current->next;
 		moreToSearch = (current != head->next);
-		break;
 	    }
 	}
-	if (head->data.compareTo(item) == LESS) {
-	    head = newNode;
-	    cout << "does this work?" << endl;
+
+	if (!duplicateFound) { // general case for insert
+	    newNode->next = predLoc->next;
+	    predLoc->next = newNode;
+
+	    // special case: if this is the last node in the circular linked list, head is reassigned to newNode
+	    if (head->data.compareTo(item) == LESS) {
+		head = newNode;
+	    }
+	    
+	    length++;
+	    return;
 	}
-	newNode->next = predLoc->next;
-	predLoc->next = newNode;
-	cout << "about to increase length" << endl;
-	length++;
     }
 }
 
 void CircularLinkedList::deleteItem(ItemType &item) {
     NodeType *predLoc = head;
-    NodeType *current = head->next;
-    // bool found = false;
-    bool duplicateFound = false;
-    bool moreToSearch = current != nullptr;
+    NodeType *current = head;
+    bool moreToSearch = true;
 
-    if (current == nullptr) {
-    	cout << "Delete invalid" << endl;
-    	return;
-    }
-
-    if (length == 0) {
-	cout << "You cannot delete from an empty list." << endl;
+    if (length == 0) { // list is empty
+	cout << "\nYou cannot delete from an empty list." << endl;
 	return;
     }
 
-    // if (item.compareTo(current->data) == EQUAL) {
-    // 	head = current->next;
-    // 	length--;
-    // 	delete current;
-    // 	return;
-    // }
+    bool isFound = false;
 
-    while (moreToSearch && !duplicateFound) {
+    current = head->next;
+
+    while (moreToSearch) {
 	if (item.compareTo(current->data) == LESS) {
 	    moreToSearch = false;
 	}
 
-	else if (item.compareTo(current->data) == EQUAL) {
-	    cout << "Item already exists" << endl;
-	    duplicateFound = true;
+	if (item.compareTo(current->data) == EQUAL) { // checks if the item is found
+	    isFound = true;
 	    break;
 	}
 
-	else {
+	else { // if greater, updates predLoc, curreent, and moreToSearch
 	    predLoc = current;
 	    current = current->next;
 	    moreToSearch = (current != head->next);
-	    break;
 	}
     }
 
-    if (!duplicateFound) {
-    	cout << "Item not in list!" << endl;
-    	return;
-    }
+    if (isFound) {
 
-    if (predLoc == current) {
-	head = nullptr;
-    }
-
-    else {
-	predLoc->next = current->next;
-	if (current == head) {
-	    head = predLoc;
+	if (predLoc == current && isFound) { // if node is found and special case: deleting the only node in the circular list, then head becomes null 
+	    head = nullptr;
+	}
+	
+	else {
+	    predLoc->next = current->next;
+	    if (current == head) { // special case: if the last node in the circular linked list is being deleted, then head is reassigned to predLoc
+		head = predLoc;
+	    }
 	}
     }
+
+    if (!isFound) { // if the item is not found in the list
+	cout << "\nItem not in list!" << endl;
+	return;
+    }
+    
     delete current;
     length--;
 }
@@ -147,18 +141,13 @@ int CircularLinkedList::lengthIs() const {
 void CircularLinkedList::print() {
     NodeType *temp;
     
-    if (length == 0) {
-    	cout << "Empty" << endl;
+    if (length == 0) { // if list is empty
+    	cout << "List is empty." << endl;
 	return;
     }
 
     else {
 	temp = head->next;
-    }
-    
-    if (head == nullptr) {
-    	cout << "Delete invalid" << endl;
-    	return;
     }
     
     do {
