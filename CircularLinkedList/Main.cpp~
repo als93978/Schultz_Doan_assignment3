@@ -1,0 +1,86 @@
+#include <iostream>
+#include <fstream>
+#include "CircularLinkedList.h"
+#include "ItemType.h"
+
+using namespace std;
+
+int main(int argc, char * argv[]) {
+    CircularLinkedList list;
+    ItemType item;
+    int input;
+    fstream fs;
+    fs.open(argv[1], fstream::in);
+
+    if (fs.is_open()) {
+	fs >> input;
+
+	while (!fs.eof()) {
+	    item.initialize(input);
+	    list.insertItem(item);
+	    fs >> input;
+	}
+
+	cout << "insert (i), delete (d), length (l), print (p), quit (q)" << endl;
+    }
+
+    else {
+	cout << "Failed to open the input file" << endl;
+	return 0;
+    }
+
+    bool loop = true;
+    char character;
+
+    while (loop) {
+	cout << "\nEnter a command: ";
+    	cin >> character;
+    	cout << "\n";
+
+	switch (character) {
+	    
+	case 'i': {
+	    int number;
+	    cout << "Number to insert: ";
+	    cin >> number;
+	    ItemType item(number);
+	    list.insertItem(item);
+	    list.print();
+	    break;
+	}
+
+	case 'd': {
+	    int value;
+	    cout << "Number to delete: ";
+	    cin >> value;
+	    ItemType item(value);
+	    list.deleteItem(item);
+	    list.print();
+	    break;
+	}
+
+	case 'l': {
+	    cout << "The length is: " << list.lengthIs() << endl;
+	    break;
+	}
+		
+	case 'p': {
+	    list.print();
+	    break;
+	}
+	    
+	case 'q': {
+	    cout << "Quitting program..." << endl;
+	    loop = false;
+	    return 0;
+	    break;
+	}
+	    
+	default: {
+	    cout << "Invalid command, try again!" << endl;
+    	    break;
+	}
+	}
+    }
+}
+    
