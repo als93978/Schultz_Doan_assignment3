@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// author: David Doan
 int main(int argc, char * argv[]) {
     CircularLinkedList list;
     ItemType item;

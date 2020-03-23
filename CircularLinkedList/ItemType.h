@@ -17,6 +17,7 @@ class ItemType {
     int getValue() const; // returns the value
     // author: David Doan
     void initialize(int num); // Sets the data member by the variable number
+    // author: David Doan
     void print(); // prints the value
 };
 
