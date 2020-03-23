@@ -11,7 +11,7 @@ class ItemType {
     ItemType(int value); // constructor for the value input
     Comparison compareTo(ItemType item); // Compares the value of the item with the current object's value and returns GREATER, LESS, or EQUAL
     int getValue() const; // returns the value
-    void initialize(int num); // Sets the data member by the variable number
+    void initialize(int number); // Sets the data member by the variable number
     void print(); // prints the value
 };
 

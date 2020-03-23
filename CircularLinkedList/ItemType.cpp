@@ -30,8 +30,8 @@ int ItemType::getValue() const {
     return value;
 }
 
-void ItemType::initialize(int num) {
-    this -> value = num;
+void ItemType::initialize(int number) {
+    this -> value = number;
 }
 
 void ItemType::print() {

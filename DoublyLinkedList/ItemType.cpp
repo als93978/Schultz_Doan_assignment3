@@ -65,8 +65,8 @@ int ItemType::getValue() const {
   Allows you to set the value data member
   after initializing an ItemType object.
  */
-void ItemType::initialize(int num) {
-    this -> value = num;
+void ItemType::initialize(int number) {
+    this -> value = number;
 }
 
 /*
