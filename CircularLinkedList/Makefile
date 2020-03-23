@@ -6,7 +6,7 @@ main: ItemType.cpp CircularLinkedList.cpp Main.cpp
 	g++ $(FLAGS) -o main ItemType.cpp CircularLinkedList.cpp Main.cpp
 
 run:
-	./main input1.txt
+	./main input.txt
 
 clean:
 	rm main
