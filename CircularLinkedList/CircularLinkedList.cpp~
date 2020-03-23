@@ -82,11 +82,11 @@ void CircularLinkedList::insertItem(ItemType &item) {
 
 void CircularLinkedList::deleteItem(ItemType &item) {
     NodeType *predLoc = head;
-    NodeType *current = head;
+    NodeType *current;
     bool moreToSearch = true;
 
     if (length == 0) { // list is empty
-	cout << "You cannot delete from an empty list." << endl;
+	cout << "\nYou cannot delete from an empty list." << endl;
 	return;
     }
 

@@ -9,16 +9,17 @@ struct NodeType {
 };
 
 class CircularLinkedList {
+    // private members
     int length;
     NodeType *head;
 
  public:
-    CircularLinkedList();
-    ~CircularLinkedList();
-    void insertItem(ItemType &item);
-    void deleteItem(ItemType &item);
-    int lengthIs() const;
-    void print();
+    CircularLinkedList(); // default constructor for CircularLinkedList
+    ~CircularLinkedList(); // destructor for CircularLinkedList
+    void insertItem(ItemType &item); // insert function that inserts the item into the circular linked list in sorted order
+    void deleteItem(ItemType &item); // delete function that removes the item from the circular linked list
+    int lengthIs() const; // returns the length of the circular linked list
+    void print(); // prints the circular linked list
 };
 
 #endif
