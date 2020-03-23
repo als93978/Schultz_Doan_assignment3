@@ -155,7 +155,7 @@ void DoublyLinkedList<T>::insertItem(T& item) {
 /*
   Author: Austin Schultz
 
-  Given a referenceto the item, this function finds the item in the list
+  Given a reference to the item, this function finds the item in the list
   whose value matches that of the given item's value, and deletes the item.
  */
 template <typename T>
